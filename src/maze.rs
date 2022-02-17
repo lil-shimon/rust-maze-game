@@ -38,6 +38,7 @@ pub struct MazeCell {
     pub(crate) flag: MazeFlag,
 }
 
+#[derive(PartialEq, Debug)]
 pub struct MazeRow {
     cells: Vec<MazeCell>,
 }
@@ -79,7 +80,7 @@ impl Maze {
 
 #[cfg(test)]
 mod test {
-    use crate::maze::{MazeCell, MazeFlag, MazeKind};
+    use crate::maze::{MazeCell, MazeFlag, MazeKind, MazeRow};
 
     #[test]
     fn should_create_maze_cell() {
@@ -88,6 +89,22 @@ mod test {
         assert_eq!(&MazeCell::create(kind, flag), &MazeCell {
             kind: MazeKind::Start,
             flag: MazeFlag::Visited,
+        })
+    }
+
+    #[test]
+    fn should_create_maze_row() {
+        let mut cells: Vec<MazeCell> = vec![];
+        for i in 0..5 {
+            let cell = MazeCell::create(MazeKind::Path, MazeFlag::Hide);
+            cells.push(cell);
+        }
+        assert_eq!(MazeRow::create(cells), MazeRow {
+            cells: vec!(MazeCell { kind: MazeKind::Path, flag: MazeFlag::Hide },
+                        MazeCell { kind: MazeKind::Path, flag: MazeFlag::Hide },
+                        MazeCell { kind: MazeKind::Path, flag: MazeFlag::Hide },
+                        MazeCell { kind: MazeKind::Path, flag: MazeFlag::Hide },
+                        MazeCell { kind: MazeKind::Path, flag: MazeFlag::Hide })
         })
     }
 }
