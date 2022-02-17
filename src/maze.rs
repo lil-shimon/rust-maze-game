@@ -1,7 +1,7 @@
 /*
  * 迷路の種類
  */
-enum MazeKind {
+pub enum MazeKind {
     Path,
     Wall,
     Start,
@@ -24,6 +24,11 @@ enum MazeDirection {
     Down,
     Left,
     Right
+}
+
+pub struct Maze {
+    kind: MazeKind,
+    flag: MazeFlag
 }
 
 const MAZE_WIDTH: u8 = 5;
