@@ -25,3 +25,6 @@ enum MazeDirection {
     Left,
     Right
 }
+
+const MAZE_WIDTH: u8 = 5;
+const MAZE_HEIGHT: u8 = 5;
